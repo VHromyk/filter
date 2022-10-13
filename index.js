@@ -8,8 +8,20 @@ function filterGoods() {
         ), sizes = [...filtersRef.querySelectorAll('#size input:checked')].map((k)=> k.value),
             cameras = [...filtersRef.querySelectorAll('#camera input:checked')].map((k)=> k.value);
 
+        console.log('brands', brands);
+    console.log('sizes', sizes);
+    console.log('cameras', cameras);
+
+
 const filteredEl = DATA.filter(
-    (n) => (!brands.length || brands.includes(n.brand) && (!sizes.length || sizes.includes(n.size)) && (!cameras.length || cameras.includes(n.camera)))
+    (n) => {
+        console.log(!sizes.length);
+        return (
+            (!sizes.length || sizes.includes(n.size)) &&
+            (!cameras.length || cameras.includes(n.camera)) &&
+            (!brands.length || brands.includes(n.brand))
+        )
+    }
 )
 
     outputGoods(filteredEl);
@@ -56,12 +68,6 @@ const DATA = [
         name: "Y7",
         size: '7.5',
         camera: '3'
-    },
-    {
-        brand: "Huawei",
-        name: "Y9",
-        size: '8',
-        camera: '4'
     },
     {
         brand: "Huawei",
